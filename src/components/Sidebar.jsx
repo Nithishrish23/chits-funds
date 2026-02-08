@@ -2,13 +2,8 @@ import { NavLink } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import ThemeToggle from './ThemeToggle';
 import {
-<<<<<<< HEAD
     FiHome, FiUsers, FiGrid, FiDollarSign,
     FiPieChart, FiLogOut, FiX, FiChevronLeft, FiChevronRight, FiUserCheck, FiBook, FiSettings, FiAward
-=======
-    FiHome, FiUsers, FiGrid,
-    FiPieChart, FiLogOut, FiX, FiChevronLeft, FiChevronRight, FiUserCheck, FiBook
->>>>>>> 02bde006476464e20ac8c8541abfe3de23c883c3
 } from 'react-icons/fi';
 import { LuIndianRupee } from "react-icons/lu";
 
@@ -20,12 +15,8 @@ export default function Sidebar({ collapsed, onToggle, isOpen, onClose }) {
         { icon: FiUsers, label: 'Users', path: '/users' },
         { icon: FiUserCheck, label: 'Staff', path: '/staff', adminOnly: true },
         { icon: FiGrid, label: 'Chits', path: '/chits' },
-<<<<<<< HEAD
         { icon: FiDollarSign, label: 'Payments', path: '/payments' },
         { icon: FiAward, label: 'Auctions', path: '/auctions' },
-=======
-        { icon: LuIndianRupee, label: 'Payments', path: '/payments' },
->>>>>>> 02bde006476464e20ac8c8541abfe3de23c883c3
         { icon: FiBook, label: 'Accounts', path: '/accounts', adminOnly: true },
         { icon: FiPieChart, label: 'Reports', path: '/reports', adminOnly: true },
         { icon: FiSettings, label: 'Settings', path: '/settings' }
