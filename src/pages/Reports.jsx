@@ -96,7 +96,6 @@ export default function Reports() {
                 api.get('/reports/profit/chits'),
                 api.get('/reports/profit/monthly')
             ]);
-<<<<<<< HEAD
             setDashboardData(dashboardRes.data);
             setChitProfits(chitsRes.data);
             
@@ -108,42 +107,6 @@ export default function Reports() {
             setMonthlyProfits(monthlyData);
         } catch (error) {
             console.error('[DEBUG] Reports error:', error);
-=======
-
-            // Transform dashboard data to flat structure for easy access
-            const dashboard = dashboardRes.data;
-            setDashboardData({
-                total_profit: dashboard.financial?.total_profit || 0,
-                monthly_collection: dashboard.financial?.total_collected || 0,
-                active_chits: dashboard.stats?.total_chits || 0,
-                pending_amount: dashboard.financial?.total_payout || 0,
-                total_users: dashboard.stats?.total_users || 0,
-                total_collected: dashboard.financial?.total_collected || 0
-            });
-
-            // Transform chit profits - backend uses 'profit', frontend expects 'total_profit'
-            const chits = chitsRes.data || [];
-            setChitProfits(chits.map(c => ({
-                ...c,
-                total_profit: c.profit || 0
-            })));
-
-            // Transform monthly profits - backend returns { year, months: [...] }
-            const monthlyData = monthlyRes.data;
-            const months = monthlyData?.months || [];
-            setMonthlyProfits(months.map(m => {
-                const [year, month] = m.month.split('-');
-                return {
-                    year: parseInt(year),
-                    month: parseInt(month),
-                    total_collected: m.total_collected || 0,
-                    total_payouts: m.total_payout || 0,
-                    profit: m.profit || 0
-                };
-            }));
-        } catch (error) {
-            console.error('Failed to load reports:', error);
->>>>>>> 02bde006476464e20ac8c8541abfe3de23c883c3
             toast.error('Failed to load reports');
         } finally {
             setLoading(false);

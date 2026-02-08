@@ -78,7 +78,6 @@ export default function Payments() {
         setSaving(true);
 
         try {
-<<<<<<< HEAD
             // Send payment data as JSON
             const paymentData = {
                 user_id: parseInt(formData.user_id),
@@ -99,25 +98,6 @@ export default function Payments() {
                 const formDataWithFile = new FormData();
                 formDataWithFile.append('file', screenshot);
                 await api.post(`/payments/${paymentId}/upload-screenshot`, formDataWithFile, {
-=======
-            // Send JSON data instead of FormData
-            const paymentData = {
-                user_id: parseInt(formData.user_id),
-                chit_id: parseInt(formData.chit_id),
-                // chit_month_id is optional - we'll let the backend handle allocation
-                amount_paid: parseFloat(formData.amount_paid),
-                payment_mode: formData.payment_mode,
-                notes: formData.notes || null
-            };
-
-            const response = await api.post('/payments', paymentData);
-
-            // If there's a screenshot, upload it separately
-            if (screenshot && response.data?.id) {
-                const screenshotData = new FormData();
-                screenshotData.append('file', screenshot);
-                await api.post(`/payments/${response.data.id}/upload-screenshot`, screenshotData, {
->>>>>>> 02bde006476464e20ac8c8541abfe3de23c883c3
                     headers: { 'Content-Type': 'multipart/form-data' }
                 });
             }
@@ -129,7 +109,6 @@ export default function Payments() {
             resetForm();
             fetchPayments();
         } catch (error) {
-<<<<<<< HEAD
             // Check for duplicate detection (409 Conflict)
             if (error.response?.status === 409) {
                 const detail = error.response?.data?.detail;
@@ -144,25 +123,21 @@ export default function Payments() {
                     toast.error('Duplicate payment detected');
                 }
             } else {
-                const message = error.response?.data?.detail || 'Failed to record payment';
+                // Handle validation errors properly - detail can be string or array of objects
+                let message = 'Failed to record payment';
+                const detail = error.response?.data?.detail;
+
+                if (typeof detail === 'string') {
+                    message = detail;
+                } else if (Array.isArray(detail) && detail.length > 0) {
+                    // Pydantic validation errors are arrays of objects with msg property
+                    message = detail.map(err => err.msg || JSON.stringify(err)).join(', ');
+                } else if (detail && typeof detail === 'object') {
+                    message = detail.msg || JSON.stringify(detail);
+                }
+
                 toast.error(message);
             }
-=======
-            // Handle validation errors properly - detail can be string or array of objects
-            let message = 'Failed to record payment';
-            const detail = error.response?.data?.detail;
-
-            if (typeof detail === 'string') {
-                message = detail;
-            } else if (Array.isArray(detail) && detail.length > 0) {
-                // Pydantic validation errors are arrays of objects with msg property
-                message = detail.map(err => err.msg || JSON.stringify(err)).join(', ');
-            } else if (detail && typeof detail === 'object') {
-                message = detail.msg || JSON.stringify(detail);
-            }
-
-            toast.error(message);
->>>>>>> 02bde006476464e20ac8c8541abfe3de23c883c3
         } finally {
             setSaving(false);
         }

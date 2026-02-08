@@ -1,13 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
-<<<<<<< HEAD
     FiUserPlus, FiDollarSign, FiCalendar, FiTrash2,
     FiArrowLeft, FiUsers, FiCheck, FiClock, FiPrinter
-=======
-    FiUserPlus, FiCalendar, FiTrash2,
-    FiArrowLeft, FiUsers, FiCheck, FiClock
->>>>>>> 02bde006476464e20ac8c8541abfe3de23c883c3
 } from 'react-icons/fi';
 import { LuIndianRupee } from "react-icons/lu";
 import toast from 'react-hot-toast';
