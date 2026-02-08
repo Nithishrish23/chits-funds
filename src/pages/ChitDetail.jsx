@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
+<<<<<<< HEAD
     FiUserPlus, FiDollarSign, FiCalendar, FiTrash2,
     FiArrowLeft, FiUsers, FiCheck, FiClock, FiPrinter
+=======
+    FiUserPlus, FiCalendar, FiTrash2,
+    FiArrowLeft, FiUsers, FiCheck, FiClock
+>>>>>>> 02bde006476464e20ac8c8541abfe3de23c883c3
 } from 'react-icons/fi';
+import { LuIndianRupee } from "react-icons/lu";
 import toast from 'react-hot-toast';
 import api from '../utils/api';
 import { useAuth } from '../context/AuthContext';
@@ -255,7 +261,7 @@ export default function ChitDetail() {
                             background: 'linear-gradient(135deg, var(--primary) 0%, #4f46e5 100%)',
                             flexShrink: 0
                         }}>
-                            <FiDollarSign size={18} color="white" />
+                            <LuIndianRupee size={18} color="white" />
                         </div>
                         <div style={{ minWidth: 0 }}>
                             <p style={{ fontSize: '0.625rem', color: 'var(--text-muted)', fontWeight: 500, textTransform: 'uppercase' }}>Total Amount</p>
@@ -277,7 +283,7 @@ export default function ChitDetail() {
                             background: 'linear-gradient(135deg, var(--secondary) 0%, #db2777 100%)',
                             flexShrink: 0
                         }}>
-                            <FiDollarSign size={18} color="white" />
+                            <LuIndianRupee size={18} color="white" />
                         </div>
                         <div style={{ minWidth: 0 }}>
                             <p style={{ fontSize: '0.625rem', color: 'var(--text-muted)', fontWeight: 500, textTransform: 'uppercase' }}>Monthly</p>
